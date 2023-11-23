@@ -10,7 +10,7 @@ TODO:
         - [X] Lint
         - [X] Prettier
         - [ ] Jest
-        - [ ] prop-types
+        - [x] prop-types
 
     Pages:
         - [ ] listagem jogadores (com filtragem)
