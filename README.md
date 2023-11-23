@@ -4,11 +4,11 @@ https://futdb.app/api/doc
 e por tree js para a carta rodar na pagina de detalhes
 https://www.youtube.com/watch?v=34B04LBS34M
 
-
 TODO:
+
     CI:
-        - [ ] Lint
-        - [ ] Prettier
+        - [X] Lint
+        - [X] Prettier
         - [ ] Jest
         - [ ] prop-types
 
