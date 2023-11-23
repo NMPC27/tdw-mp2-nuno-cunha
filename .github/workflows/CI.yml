@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches:
+      - "*"
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLinter
+        run: npm run lint
