@@ -6,13 +6,9 @@ import PlayerInfo from "./PlayerInfo.jsx";
 import TeamsPage from "./TeamsPage.jsx";
 import PlayersPage from "./PlayersPage.jsx";
 
-import './index.css'
+import "./index.css";
 
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/PlayerInfo",
     element: <PlayerInfo />,
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

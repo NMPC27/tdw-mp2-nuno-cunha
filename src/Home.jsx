@@ -1,11 +1,6 @@
-import { useState } from "react";
-
-
-import AppBarHeader from "./components/AppBarHeader"
+import AppBarHeader from "./components/AppBarHeader";
 
 export default function Home() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <AppBarHeader />
