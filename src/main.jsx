@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import Home from "./Home.jsx";
-import PlayerInfo from "./PlayerInfo.jsx";
-import TeamsPage from "./TeamsPage.jsx";
-import PlayersPage from "./PlayersPage.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./Home.jsx";
+import PlayerInfoPage from "./pages/PlayerInfoPage.jsx";
+import TeamsPage from "./pages/TeamsPage.jsx";
+import PlayersPage from "./pages/PlayersPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
+
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -24,13 +28,24 @@ const router = createBrowserRouter([
     element: <TeamsPage />,
   },
   {
+    path: "/AboutPage",
+    element: <AboutPage />,
+  },
+  {
     path: "/PlayerInfo",
-    element: <PlayerInfo />,
+    element: <PlayerInfoPage />,
+  },
+  {
+    path: "/search",
+    element: <SearchPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+    ,
+  </Provider>,
 );

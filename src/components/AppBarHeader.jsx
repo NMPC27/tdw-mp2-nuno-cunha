@@ -8,6 +8,11 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setNavbarValue } from "../features/navbarSlice";
+import * as React from "react";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -51,6 +56,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppBarHeader() {
+  const navbar = useSelector((state) => state.navbar.value);
+  const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+
+  const [text, setText] = React.useState("");
+
   return (
     <AppBar
       position="static"
@@ -73,6 +85,10 @@ export default function AppBarHeader() {
               color: "inherit",
               textDecoration: "none",
             }}
+            onClick={() => {
+              dispatch(setNavbarValue("home"));
+              navigate("/");
+            }}
           >
             LOGO
           </Typography>
@@ -82,18 +98,55 @@ export default function AppBarHeader() {
               sx={{
                 my: 2,
                 color: "white",
-                bgcolor: "#111827",
+                bgcolor: navbar == "players" && "#111827",
+                "&:hover":
+                  navbar == "players"
+                    ? { bgcolor: "#111827" }
+                    : { bgcolor: "#374151" },
                 marginRight: "1vw",
               }}
-              href="/PlayersPage"
+              onClick={() => {
+                dispatch(setNavbarValue("players"));
+                navigate("/PlayersPage");
+              }}
             >
               Players
             </Button>
             <Button
-              sx={{ my: 2, color: "white", "&:hover": { bgcolor: "#374151" } }}
-              href="/TeamsPage"
+              sx={{
+                my: 2,
+                color: "white",
+                bgcolor: navbar == "teams" && "#111827",
+                "&:hover":
+                  navbar == "teams"
+                    ? { bgcolor: "#111827" }
+                    : { bgcolor: "#374151" },
+                marginRight: "1vw",
+              }}
+              onClick={() => {
+                dispatch(setNavbarValue("teams"));
+                navigate("/TeamsPage");
+              }}
             >
               Teams
+            </Button>
+            <Button
+              sx={{
+                my: 2,
+                color: "white",
+                bgcolor: navbar == "about" && "#111827",
+                "&:hover":
+                  navbar == "teams"
+                    ? { bgcolor: "#111827" }
+                    : { bgcolor: "#374151" },
+                marginRight: "1vw",
+              }}
+              onClick={() => {
+                dispatch(setNavbarValue("about"));
+                navigate("/AboutPage");
+              }}
+            >
+              About
             </Button>
           </Box>
 
@@ -104,6 +157,12 @@ export default function AppBarHeader() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  navigate("/search?q=" + text);
+                }
+              }}
             />
           </Search>
         </Toolbar>
