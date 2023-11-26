@@ -7,9 +7,7 @@ export default function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
 
-  const playerID = SearchByName(query);
-
-  console.log(playerID);
+  const playersIDs = SearchByName(query);
 
   return (
     <>

@@ -18932,7 +18932,7 @@ f = open("data.jsx", "w",encoding="utf-8")
 for key,value in nameId.items():
     if key not in result.keys():
         result[key] = value
-        f.write('"'+key+'":'+str(value)+',\n')
+        f.write('"'+key.lower()+'":'+str(value)+',\n')
 
 f.close()
 
