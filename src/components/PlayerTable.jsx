@@ -25,17 +25,23 @@ export default function PlayerTable() {
 
   const [page,setPage] = useState(0);
 
+  const [data,setData] = useState([]);
+
   const playersData = useSelector((state) => state.players.playersData)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log("useEffect_PAGE")
+    //console.log("useEffect_PAGE")
     dispatch(fetchPlayersPage(page+1))
-    console.log(playersData)
+    //console.log(playersData)
   }, [page]);
 
   useEffect(() => {
     setInterval(() => {
+      playersData.then(
+        setData(playersData)
+      )
+      
       console.log(playersData)
      },2000);
   }, []);
@@ -53,7 +59,7 @@ export default function PlayerTable() {
       sx={{ borderRadius: "10px", height: "35vw" }}
     >
       <DataGrid
-        rows={playersData}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {

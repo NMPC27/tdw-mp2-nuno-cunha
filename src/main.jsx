@@ -6,7 +6,6 @@ import "./index.css";
 
 import Home from "./Home.jsx";
 import PlayerInfoPage from "./pages/PlayerInfoPage.jsx";
-import TeamsPage from "./pages/TeamsPage.jsx";
 import PlayersPage from "./pages/PlayersPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
   {
     path: "/PlayersPage",
     element: <PlayersPage />,
-  },
-  {
-    path: "/TeamsPage",
-    element: <TeamsPage />,
   },
   {
     path: "/AboutPage",

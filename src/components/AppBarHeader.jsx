@@ -70,30 +70,25 @@ export default function AppBarHeader() {
     >
       <Container maxWidth="xl">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              ml: "0.5vw",
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-            onClick={() => {
-              dispatch(setNavbarValue("home"));
-              navigate("/");
-            }}
-          >
-            LOGO
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Button
+              sx={{
+                my: 2,
+                color: "white",
+                bgcolor: navbar == "home" && "#111827",
+                "&:hover":
+                  navbar == "home"
+                    ? { bgcolor: "#111827" }
+                    : { bgcolor: "#374151" },
+                marginRight: "1vw",
+              }}
+              onClick={() => {
+                dispatch(setNavbarValue("home"));
+                navigate("/");
+              }}
+            >
+              HOME
+            </Button>
             <Button
               sx={{
                 my: 2,
@@ -111,24 +106,6 @@ export default function AppBarHeader() {
               }}
             >
               Players
-            </Button>
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                bgcolor: navbar == "teams" && "#111827",
-                "&:hover":
-                  navbar == "teams"
-                    ? { bgcolor: "#111827" }
-                    : { bgcolor: "#374151" },
-                marginRight: "1vw",
-              }}
-              onClick={() => {
-                dispatch(setNavbarValue("teams"));
-                navigate("/TeamsPage");
-              }}
-            >
-              Teams
             </Button>
             <Button
               sx={{
