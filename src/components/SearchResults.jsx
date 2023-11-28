@@ -1,8 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import { fetchPlayersPage } from "../features/playerSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setPlayerInfo } from "../features/infoPlayerSlice";
@@ -39,15 +38,39 @@ export default function SearchResults(props) {
             tmp = [...tmp, res.data.player ]
 
             getClubByID(res.data.player.club).then((res) => {
-                tmp[idx].club = res.data.club.name;
+                if (res.data.club.id == tmp[idx].club){
+                    tmp[idx].club = res.data.club.name;
+                }else{
+                    tmp.forEach((val,idx) => {
+                        if (res.data.club.id == val.club){
+                            tmp[idx].club = res.data.club.name;
+                        }
+                    })
+                }
             });
     
             getLeagueByID(res.data.player.league).then((res) => {
-                tmp[idx].league = res.data.league.name;
+                if (res.data.league.id == tmp[idx].league){
+                    tmp[idx].league = res.data.league.name;
+                }else{
+                    tmp.forEach((val,idx) => {
+                        if (res.data.league.id == val.league){
+                            tmp[idx].league = res.data.league.name;
+                        }
+                    })
+                }
             });
     
             getNationsByID(res.data.player.nation).then((res) => {
-                tmp[idx].nation = res.data.nation.name;
+                if (res.data.nation.id == tmp[idx].nation){
+                    tmp[idx].nation = res.data.nation.name;
+                }else{
+                    tmp.forEach((val,idx) => {
+                        if (res.data.nation.id == val.nation){
+                            tmp[idx].nation = res.data.nation.name;
+                        }
+                    })
+                }
             });
 
             setData(tmp);
