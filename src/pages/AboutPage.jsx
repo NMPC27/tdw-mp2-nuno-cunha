@@ -1,8 +1,8 @@
 import AppBarHeader from "../components/AppBarHeader";
 import Box from "@mui/material/Box";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setNavbarValue } from "../features/navbarSlice";
-import React, { useState, useEffect } from 'react';
+import { useEffect } from "react";
 
 export default function AboutPage() {
   const dispatch = useDispatch();

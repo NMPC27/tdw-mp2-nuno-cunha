@@ -19,8 +19,7 @@ TODO:
 
 ???
 -> o f5 da pagina info da break por causa do estado global
-  deveria continuar a usar???
-
+deveria continuar a usar???
 
     {
       "id": 17788,

@@ -1,20 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getClubByID } from './api'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getClubByID } from "./api";
 
 const initialState = {
   value: null,
-}
+};
 
 export const fetchTeamName = createAsyncThunk(
-  'team/getTeamName',
-  async (teamID ,thunkAPI) => {
-    const response = await getClubByID(teamID)
-    return response.data.club.name
-  }
-)
+  "team/getTeamName",
+  async (teamID) => {
+    const response = await getClubByID(teamID);
+    return response.data.club.name;
+  },
+);
 
 const teamNameSlice = createSlice({
-  name: 'teamName',
+  name: "teamName",
   initialState,
   reducers: {
     // standard reducer logic, with auto-generated action types per reducer
@@ -24,13 +24,9 @@ const teamNameSlice = createSlice({
     builder.addCase(fetchTeamName.fulfilled, (state, action) => {
       // Add user to the state array
 
-      state.value = action.payload
-
-    })
+      state.value = action.payload;
+    });
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { } = teamNameSlice.actions
-
-export default teamNameSlice.reducer
+export default teamNameSlice.reducer;

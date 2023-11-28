@@ -2,9 +2,9 @@ import AppBarHeader from "../components/AppBarHeader";
 import { useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import SearchByName from "../data/SearchByName";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setNavbarValue } from "../features/navbarSlice";
-import React, { useState, useEffect } from 'react';
+import { useEffect } from "react";
 
 export default function SearchPage() {
   const dispatch = useDispatch();
@@ -13,13 +13,12 @@ export default function SearchPage() {
     dispatch(setNavbarValue(null));
   }, []);
 
-
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
 
   const playersIDs = SearchByName(query);
 
-  console.log(playersIDs)
+  console.log(playersIDs);
 
   return (
     <>

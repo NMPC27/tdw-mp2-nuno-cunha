@@ -1,9 +1,9 @@
 import { DataGrid } from "@mui/x-data-grid";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import { fetchPlayersPage } from '../features/playerSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import React, { useState, useEffect } from 'react';
+import { fetchPlayersPage } from "../features/playerSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setPlayerInfo } from "../features/infoPlayerSlice";
 
@@ -22,28 +22,27 @@ const columns = [
   { field: "club", headerName: "Club", width: 200 },
 ];
 
-
 export default function PlayerTable() {
   let navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [page,setPage] = useState(0);
+  const [page, setPage] = useState(0);
 
-  const [data,setData] = useState([]);
-  const [update,setUpdate] = useState(false);
+  const [data, setData] = useState([]);
+  const [update, setUpdate] = useState(false);
 
-  const playersData = useSelector((state) => state.players.playersData)
+  const playersData = useSelector((state) => state.players.playersData);
 
   useEffect(() => {
-    if (playersData.length == 0 ){ // first time loading page
-      dispatch(fetchPlayersPage(1))
-      dispatch(fetchPlayersPage(2))
+    if (playersData.length == 0) {
+      // first time loading page
+      dispatch(fetchPlayersPage(1));
+      dispatch(fetchPlayersPage(2));
     }
 
-    if (playersData.length/20 == page+1) {
-      dispatch(fetchPlayersPage(page+2))
+    if (playersData.length / 20 == page + 1) {
+      dispatch(fetchPlayersPage(page + 2));
     }
-
   }, [page]);
 
   useEffect(() => {
@@ -51,51 +50,44 @@ export default function PlayerTable() {
     // mas dps os elementos que ja estavam no array continuam a ser imutaveis
     // o que esta a seguir resolve -> optimizar
 
-    const tmp = []
-    playersData.forEach((val,index) => {
-      tmp[index] = {...val}
+    const tmp = [];
+    playersData.forEach((val, index) => {
+      tmp[index] = { ...val };
 
       getClubByID(tmp[index].club).then((res) => {
-        tmp[index].club=res.data.club.name
-      })
+        tmp[index].club = res.data.club.name;
+      });
 
       getLeagueByID(tmp[index].league).then((res) => {
-        tmp[index].league=res.data.league.name
-      })
+        tmp[index].league = res.data.league.name;
+      });
 
       getNationsByID(tmp[index].nation).then((res) => {
-        tmp[index].nation=res.data.nation.name 
-      })
+        tmp[index].nation = res.data.nation.name;
+      });
 
-      setUpdate(true)
-      setData(tmp)
-
-    })
-
-  
+      setUpdate(true);
+      setData(tmp);
+    });
   }, [playersData]);
 
   useEffect(() => {
-    if (update){
-
+    if (update) {
       setTimeout(() => {
-        setData([...data])
+        setData([...data]);
       }, 1000);
 
       setTimeout(() => {
-        setData([...data])
+        setData([...data]);
       }, 2000);
 
-      setUpdate(false)
+      setUpdate(false);
     }
-
-  }, [data])
-
-
+  }, [data]);
 
   const handleRowClick = (params) => {
-    dispatch(setPlayerInfo(params.row))
-    navigate("/PlayerInfoPage/"+params.row.id);
+    dispatch(setPlayerInfo(params.row));
+    navigate("/PlayerInfoPage/" + params.row.id);
   };
 
   return (
@@ -114,7 +106,9 @@ export default function PlayerTable() {
           }}
           onRowClick={handleRowClick}
           pageSizeOptions={[20]}
-          onPaginationModelChange={(params) => {setPage(params.page)}}
+          onPaginationModelChange={(params) => {
+            setPage(params.page);
+          }}
         />
       </TableContainer>
     </>

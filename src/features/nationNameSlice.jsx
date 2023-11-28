@@ -1,20 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getNationsByID } from './api'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getNationsByID } from "./api";
 
 const initialState = {
   value: null,
-}
+};
 
 export const fetchNationName = createAsyncThunk(
-  'nation/getNationName',
-  async (nationID ,thunkAPI) => {
-    const response = await getNationsByID(nationID)
-    return response.data.nation.name
-  }
-)
+  "nation/getNationName",
+  async (nationID) => {
+    const response = await getNationsByID(nationID);
+    return response.data.nation.name;
+  },
+);
 
 const nationNameSlice = createSlice({
-  name: 'nationName',
+  name: "nationName",
   initialState,
   reducers: {
     // standard reducer logic, with auto-generated action types per reducer
@@ -24,13 +24,9 @@ const nationNameSlice = createSlice({
     builder.addCase(fetchNationName.fulfilled, (state, action) => {
       // Add user to the state array
 
-      state.value = action.payload
-
-    })
+      state.value = action.payload;
+    });
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { } = nationNameSlice.actions
-
-export default nationNameSlice.reducer
+export default nationNameSlice.reducer;

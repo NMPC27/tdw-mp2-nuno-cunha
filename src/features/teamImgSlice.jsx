@@ -1,20 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getClubImgByID } from './api'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getClubImgByID } from "./api";
 
 const initialState = {
   value: null,
-}
+};
 
 export const fetchTeamImg = createAsyncThunk(
-  'team/getTeamImg',
-  async (teamID ,thunkAPI) => {
-    const response = await getClubImgByID(teamID)
-    return response
-  }
-)
+  "team/getTeamImg",
+  async (teamID) => {
+    const response = await getClubImgByID(teamID);
+    return response;
+  },
+);
 
 const teamImgSlice = createSlice({
-  name: 'teamImg',
+  name: "teamImg",
   initialState,
   reducers: {
     // standard reducer logic, with auto-generated action types per reducer
@@ -24,13 +24,9 @@ const teamImgSlice = createSlice({
     builder.addCase(fetchTeamImg.fulfilled, (state, action) => {
       // Add user to the state array
 
-      state.value = action.payload
-
-    })
+      state.value = action.payload;
+    });
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { } = teamImgSlice.actions
-
-export default teamImgSlice.reducer
+export default teamImgSlice.reducer;

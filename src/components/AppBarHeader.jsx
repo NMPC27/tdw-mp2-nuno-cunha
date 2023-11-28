@@ -1,7 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
@@ -9,9 +8,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setNavbarValue } from "../features/navbarSlice";
-import * as React from "react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,7 +58,7 @@ export default function AppBarHeader() {
 
   let navigate = useNavigate();
 
-  const [text, setText] = React.useState("");
+  const [text, setText] = useState("");
 
   return (
     <AppBar

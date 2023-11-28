@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 
 import AppBarHeader from "../components/AppBarHeader";
 import PlayerTable from "../components/PlayerTable";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setNavbarValue } from "../features/navbarSlice";
-import React, { useState, useEffect } from 'react';
+import { useEffect } from "react";
 
 export default function PlayersPage() {
   const dispatch = useDispatch();
@@ -13,7 +13,6 @@ export default function PlayersPage() {
   useEffect(() => {
     dispatch(setNavbarValue("players"));
   }, []);
-
 
   return (
     <>
