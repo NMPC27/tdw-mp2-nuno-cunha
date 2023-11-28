@@ -13,9 +13,13 @@ TODO:
         - [x] prop-types
 
     Pages:
-        - [ ] listagem jogadores (com filtragem)
-        - [ ] detalhe jogador
+        - [X] listagem jogadores (com filtragem)
+        - [X] detalhe jogador
         - [ ] info
+
+???
+-> o f5 da pagina info da break por causa do estado global
+  deveria continuar a usar???
 
 
     {

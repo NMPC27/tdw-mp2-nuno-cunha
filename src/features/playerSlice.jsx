@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getPlayersPage, getClubByID, getLeagueByID, getNationsByID } from './api'
+import { getPlayersPage,getClubByID } from './api'
 
 const initialState = {
   playersData: [],
@@ -9,7 +9,7 @@ export const fetchPlayersPage = createAsyncThunk(
   'players/getPlayersPage',
   async (page ,thunkAPI) => {
     const response = await getPlayersPage(page)
-    return response
+    return response.data.items
   }
 )
 
@@ -22,36 +22,12 @@ const playersSlice = createSlice({
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchPlayersPage.fulfilled, (state, action) => {
-
-
-      let tmp = action.payload.data.items
-
-
-
-
-      tmp.forEach( (element,idx) => {
-        console.log(element)
-        tmp[idx].nation = getNationsByID(element.nation).then(
-            (res) => {
-                return res.data.nation.name
-            }
-        )
-        
-        tmp[idx].league = getLeagueByID(element.league).then(
-            (res) => {
-                return res.data.league.name
-            }
-        )
-
-        tmp[idx].club = getClubByID(element.club).then(
-            (res) => {
-                return res.data.club.name
-            }
-        )
+      // Add user to the state array
+      
+      action.payload.forEach( val => {
+        state.playersData.push(val)
       })
 
-      state.playersData = tmp
-      console.log(state.playersData)
     })
   },
 })

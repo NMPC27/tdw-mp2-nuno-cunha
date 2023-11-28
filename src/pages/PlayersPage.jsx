@@ -3,8 +3,18 @@ import Box from "@mui/material/Box";
 
 import AppBarHeader from "../components/AppBarHeader";
 import PlayerTable from "../components/PlayerTable";
+import { useSelector, useDispatch } from "react-redux";
+import { setNavbarValue } from "../features/navbarSlice";
+import React, { useState, useEffect } from 'react';
 
 export default function PlayersPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setNavbarValue("players"));
+  }, []);
+
+
   return (
     <>
       <AppBarHeader />
@@ -18,7 +28,7 @@ export default function PlayersPage() {
                 marginBottom: "0vw",
               }}
             >
-              PlayersPage
+              Players
             </h2>
           </Grid>
           <Grid item xs={10}></Grid>

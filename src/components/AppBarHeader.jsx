@@ -57,7 +57,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AppBarHeader() {
   const navbar = useSelector((state) => state.navbar.value);
-  const dispatch = useDispatch();
 
   let navigate = useNavigate();
 
@@ -83,7 +82,6 @@ export default function AppBarHeader() {
                 marginRight: "1vw",
               }}
               onClick={() => {
-                dispatch(setNavbarValue("home"));
                 navigate("/");
               }}
             >
@@ -101,7 +99,6 @@ export default function AppBarHeader() {
                 marginRight: "1vw",
               }}
               onClick={() => {
-                dispatch(setNavbarValue("players"));
                 navigate("/PlayersPage");
               }}
             >
@@ -119,7 +116,6 @@ export default function AppBarHeader() {
                 marginRight: "1vw",
               }}
               onClick={() => {
-                dispatch(setNavbarValue("about"));
                 navigate("/AboutPage");
               }}
             >
