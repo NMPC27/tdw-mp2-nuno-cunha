@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import Alert from '@mui/material/Alert';
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -60,7 +61,10 @@ export default function AppBarHeader() {
 
   const [text, setText] = useState("");
 
+  const [showError, setShowError] = useState(false);
+
   return (
+    <>
     <AppBar
       position="static"
       sx={{ bgcolor: "#1F2937", borderRadius: "30px", marginBottom: "1vw" }}
@@ -131,7 +135,14 @@ export default function AppBarHeader() {
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  navigate("/search?q=" + text);
+                  if (text.length >= 3) {
+                    navigate("/search?q=" + text);
+                  }else{
+                    setShowError(true)  
+                    setTimeout(()=>{
+                      setShowError(false)  
+                    },3000)                  
+                  }
                 }
               }}
             />
@@ -139,5 +150,11 @@ export default function AppBarHeader() {
         </Toolbar>
       </Container>
     </AppBar>
+    { showError &&
+      <div style={{right: '1vw', position:'absolute' }}>
+        <Alert severity="error" variant="filled" sx={{width:"20vw"}} >Insert at least 3 leters to search!</Alert>
+      </div>
+    }
+    </>
   );
 }

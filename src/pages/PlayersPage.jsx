@@ -19,7 +19,7 @@ export default function PlayersPage() {
       <AppBarHeader />
       <Box sx={{ ml: "2vw", mr: "2vw" }}>
         <Grid container spacing={2}>
-          <Grid item xs={2}>
+          <Grid item xs={12}>
             <h2
               style={{
                 color: "#273746",
@@ -30,7 +30,6 @@ export default function PlayersPage() {
               Players
             </h2>
           </Grid>
-          <Grid item xs={10}></Grid>
 
           <Grid item xs={12}>
             <PlayerTable />

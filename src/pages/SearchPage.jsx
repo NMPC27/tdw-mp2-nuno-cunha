@@ -1,10 +1,12 @@
 import AppBarHeader from "../components/AppBarHeader";
+import Grid from "@mui/material/Grid";
 import { useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import SearchByName from "../data/SearchByName";
 import { useDispatch } from "react-redux";
 import { setNavbarValue } from "../features/navbarSlice";
 import { useEffect } from "react";
+import SearchResults from "../components/SearchResults";
 
 export default function SearchPage() {
   const dispatch = useDispatch();
@@ -18,13 +20,27 @@ export default function SearchPage() {
 
   const playersIDs = SearchByName(query);
 
-  console.log(playersIDs);
-
   return (
     <>
       <AppBarHeader />
       <Box sx={{ ml: "2vw", mr: "2vw" }}>
-        <h1>Search for {query}</h1>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <h2
+              style={{
+                color: "#273746",
+                marginTop: "0vw",
+                marginBottom: "0vw",
+              }}
+            >
+              Search for {query}
+            </h2>
+          </Grid>
+
+          <Grid item xs={12}>
+              <SearchResults playersIDs={playersIDs} />
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
