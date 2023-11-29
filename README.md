@@ -15,15 +15,18 @@ TODO:
     Pages:
         - [X] listagem jogadores (com filtragem)
         - [X] detalhe jogador
-        - [ ] info
-        - [ ] home
+        - [X] info
+        - [X] home
         - [X] search
 
     add proptypes validation
+    add players img to table
 
 ???
 -> o f5 da pagina info da break por causa do estado global
 deveria continuar a usar???
+
+---------------------------------------
 
     {
       "id": 17788,
