@@ -18,7 +18,7 @@ export default function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
 
-  const playersIDs = SearchByName(query);
+  const playersIDs = SearchByName(query.toLowerCase());
 
   return (
     <>
