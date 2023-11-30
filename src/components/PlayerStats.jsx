@@ -33,16 +33,16 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer.rating / 10)],
+                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.rating / 10)],
               }}
             >
-              {infoPlayer.rating}
+              {infoPlayer && infoPlayer.rating}
             </Button>
           </Grid>
         </Grid>
         <Stack spacing={2}>
-          <h3 style={{ marginTop: "1vw" }}>Position: {infoPlayer.position}</h3>
-          <h3>Foot: {infoPlayer.foot}</h3>
+          <h3 style={{ marginTop: "1vw" }}>Position: {infoPlayer && infoPlayer.position}</h3>
+          <h3>Foot: {infoPlayer &&  infoPlayer.foot}</h3>
         </Stack>
 
         <Grid container spacing={2} sx={{ marginTop: "0vw" }}>
@@ -52,7 +52,7 @@ export default function PlayerStats() {
             </h3>
           </Grid>
           <Grid item xs={6}>
-            <Rating name="read-only" value={infoPlayer.skillMoves} readOnly />
+            <Rating name="read-only" value={infoPlayer && infoPlayer.skillMoves} readOnly />
           </Grid>
           <Grid item xs={6}>
             <h3 style={{ marginTop: "0vw", marginBottom: "0vw" }}>
@@ -60,7 +60,7 @@ export default function PlayerStats() {
             </h3>
           </Grid>
           <Grid item xs={6}>
-            <Rating name="read-only" value={infoPlayer.weakFoot} readOnly />
+            <Rating name="read-only" value={infoPlayer && infoPlayer.weakFoot} readOnly />
           </Grid>
         </Grid>
       </Grid>
@@ -74,10 +74,10 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer.pace / 10)],
+                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.pace / 10)],
               }}
             >
-              {infoPlayer.pace}
+              {infoPlayer && infoPlayer.pace}
             </Button>
           </Grid>
           <Grid item xs={9}>
@@ -89,10 +89,10 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer.shooting / 10)],
+                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.shooting / 10)],
               }}
             >
-              {infoPlayer.shooting}
+              {infoPlayer && infoPlayer.shooting}
             </Button>
           </Grid>
           <Grid item xs={9}>
@@ -104,10 +104,10 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer.passing / 10)],
+                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.passing / 10)],
               }}
             >
-              {infoPlayer.passing}
+              {infoPlayer && infoPlayer.passing}
             </Button>
           </Grid>
           <Grid item xs={9}>
@@ -120,10 +120,10 @@ export default function PlayerStats() {
               variant="contained"
               style={{
                 backgroundColor:
-                  hexCodes[Math.floor(infoPlayer.dribbling / 10)],
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.dribbling / 10)],
               }}
             >
-              {infoPlayer.dribbling}
+              {infoPlayer && infoPlayer.dribbling}
             </Button>
           </Grid>
           <Grid item xs={9}>
@@ -136,10 +136,10 @@ export default function PlayerStats() {
               variant="contained"
               style={{
                 backgroundColor:
-                  hexCodes[Math.floor(infoPlayer.defending / 10)],
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.defending / 10)],
               }}
             >
-              {infoPlayer.defending}
+              {infoPlayer && infoPlayer.defending}
             </Button>
           </Grid>
           <Grid item xs={9}>
@@ -152,10 +152,10 @@ export default function PlayerStats() {
               variant="contained"
               style={{
                 backgroundColor:
-                  hexCodes[Math.floor(infoPlayer.physicality / 10)],
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.physicality / 10)],
               }}
             >
-              {infoPlayer.physicality}
+              {infoPlayer && infoPlayer.physicality}
             </Button>
           </Grid>
         </Grid>

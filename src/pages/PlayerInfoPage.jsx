@@ -16,6 +16,7 @@ import { fetchNationName } from "../features/nationNameSlice";
 import { fetchTeamImg } from "../features/teamImgSlice";
 import { fetchLeagueImg } from "../features/leagueImgSlice";
 import { fetchNationImg } from "../features/nationImgSlice";
+import { setPlayerInfo } from "../features/infoPlayerSlice"
 
 import { getPlayerInfoByID } from "../features/api";
 
@@ -40,6 +41,8 @@ export default function PlayerInfoPage() {
   const leagueImg = useSelector((state) => state.leagueImg.value);
   const nationImg = useSelector((state) => state.nationImg.value);
 
+  const infoPlayer = useSelector((state) => state.infoPlayer.value);
+
   useEffect(() => {
     dispatch(setNavbarValue(null));
 
@@ -51,6 +54,11 @@ export default function PlayerInfoPage() {
       dispatch(fetchTeamImg(playerInfo.club));
       dispatch(fetchLeagueImg(playerInfo.league));
       dispatch(fetchNationImg(playerInfo.nation));
+
+      if (infoPlayer == null) {
+        dispatch(setPlayerInfo(res.data.player));
+      }
+
     });
   }, []);
 

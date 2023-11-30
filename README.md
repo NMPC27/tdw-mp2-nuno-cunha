@@ -16,12 +16,11 @@ TODO:
         - [X] home
         - [X] search
 
+    [X] suport for hibrid mode (resquest or use redux state on player info)
+
     add players img to table
     CD
 
-???
--> o f5 da pagina info da break por causa do estado global
-deveria continuar a usar???
 
 ---------------------------------------
 
