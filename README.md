@@ -1,15 +1,12 @@
 FIFA cards
 
 https://futdb.app/api/doc
-e por tree js para a carta rodar na pagina de detalhes
-https://www.youtube.com/watch?v=34B04LBS34M
 
 TODO:
 
     CI:
         - [X] Lint
         - [X] Prettier
-        - [ ] Jest
         - [x] prop-types
 
     Pages:
@@ -19,8 +16,8 @@ TODO:
         - [X] home
         - [X] search
 
-    add proptypes validation
     add players img to table
+    CD
 
 ???
 -> o f5 da pagina info da break por causa do estado global

@@ -122,3 +122,12 @@ export default function SearchResults(props) {
     </>
   );
 }
+
+import PropTypes from "prop-types";
+
+SearchResults.propTypes = {
+  playersIDs: PropTypes.object.isRequired,
+};
+
+
+
