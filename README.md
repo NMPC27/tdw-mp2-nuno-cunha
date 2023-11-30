@@ -18,11 +18,11 @@ TODO:
 
     [X] suport for hibrid mode (resquest or use redux state on player info)
 
-    add players img to table
-    CD
+    [X] add players img to table
 
+    CD -> no suport bc api have very little requests
 
----------------------------------------
+---
 
     {
       "id": 17788,

@@ -7,10 +7,20 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setPlayerInfo } from "../features/infoPlayerSlice";
 
-import { getClubByID, getLeagueByID, getNationsByID } from "../features/api";
+import {
+  getClubByID,
+  getLeagueByID,
+  getNationsByID,
+  getPlayerImgByID,
+} from "../features/api";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "resourceId",
+    headerName: "Photo",
+    width: 70,
+    renderCell: (params) => <img src={params.value} width="100%" />,
+  },
   { field: "firstName", headerName: "First name", width: 200 },
   { field: "lastName", headerName: "Last name", width: 200 },
   { field: "age", headerName: "Age", width: 100 },
@@ -29,7 +39,6 @@ export default function PlayerTable() {
   const [page, setPage] = useState(0);
 
   const [data, setData] = useState([]);
-  const [update, setUpdate] = useState(false);
 
   const playersData = useSelector((state) => state.players.playersData);
 
@@ -56,34 +65,19 @@ export default function PlayerTable() {
 
       getClubByID(tmp[index].club).then((res) => {
         tmp[index].club = res.data.club.name;
+        getLeagueByID(tmp[index].league).then((res) => {
+          tmp[index].league = res.data.league.name;
+          getNationsByID(tmp[index].nation).then((res) => {
+            tmp[index].nation = res.data.nation.name;
+            getPlayerImgByID(tmp[index].id).then((res) => {
+              tmp[index].resourceId = res;
+              setData(tmp);
+            });
+          });
+        });
       });
-
-      getLeagueByID(tmp[index].league).then((res) => {
-        tmp[index].league = res.data.league.name;
-      });
-
-      getNationsByID(tmp[index].nation).then((res) => {
-        tmp[index].nation = res.data.nation.name;
-      });
-
-      setUpdate(true);
-      setData(tmp);
     });
   }, [playersData]);
-
-  useEffect(() => {
-    if (update) {
-      setTimeout(() => {
-        setData([...data]);
-      }, 1000);
-
-      setTimeout(() => {
-        setData([...data]);
-      }, 2000);
-
-      setUpdate(false);
-    }
-  }, [data]);
 
   const handleRowClick = (params) => {
     dispatch(setPlayerInfo(params.row));

@@ -33,7 +33,8 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.rating / 10)],
+                backgroundColor:
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.rating / 10)],
               }}
             >
               {infoPlayer && infoPlayer.rating}
@@ -41,8 +42,10 @@ export default function PlayerStats() {
           </Grid>
         </Grid>
         <Stack spacing={2}>
-          <h3 style={{ marginTop: "1vw" }}>Position: {infoPlayer && infoPlayer.position}</h3>
-          <h3>Foot: {infoPlayer &&  infoPlayer.foot}</h3>
+          <h3 style={{ marginTop: "1vw" }}>
+            Position: {infoPlayer && infoPlayer.position}
+          </h3>
+          <h3>Foot: {infoPlayer && infoPlayer.foot}</h3>
         </Stack>
 
         <Grid container spacing={2} sx={{ marginTop: "0vw" }}>
@@ -52,7 +55,11 @@ export default function PlayerStats() {
             </h3>
           </Grid>
           <Grid item xs={6}>
-            <Rating name="read-only" value={infoPlayer && infoPlayer.skillMoves} readOnly />
+            <Rating
+              name="read-only"
+              value={infoPlayer && infoPlayer.skillMoves}
+              readOnly
+            />
           </Grid>
           <Grid item xs={6}>
             <h3 style={{ marginTop: "0vw", marginBottom: "0vw" }}>
@@ -60,7 +67,11 @@ export default function PlayerStats() {
             </h3>
           </Grid>
           <Grid item xs={6}>
-            <Rating name="read-only" value={infoPlayer && infoPlayer.weakFoot} readOnly />
+            <Rating
+              name="read-only"
+              value={infoPlayer && infoPlayer.weakFoot}
+              readOnly
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -74,7 +85,8 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.pace / 10)],
+                backgroundColor:
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.pace / 10)],
               }}
             >
               {infoPlayer && infoPlayer.pace}
@@ -89,7 +101,8 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.shooting / 10)],
+                backgroundColor:
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.shooting / 10)],
               }}
             >
               {infoPlayer && infoPlayer.shooting}
@@ -104,7 +117,8 @@ export default function PlayerStats() {
             <Button
               variant="contained"
               style={{
-                backgroundColor: hexCodes[Math.floor(infoPlayer && infoPlayer.passing / 10)],
+                backgroundColor:
+                  hexCodes[Math.floor(infoPlayer && infoPlayer.passing / 10)],
               }}
             >
               {infoPlayer && infoPlayer.passing}
@@ -152,7 +166,9 @@ export default function PlayerStats() {
               variant="contained"
               style={{
                 backgroundColor:
-                  hexCodes[Math.floor(infoPlayer && infoPlayer.physicality / 10)],
+                  hexCodes[
+                    Math.floor(infoPlayer && infoPlayer.physicality / 10)
+                  ],
               }}
             >
               {infoPlayer && infoPlayer.physicality}

@@ -16,7 +16,7 @@ import { fetchNationName } from "../features/nationNameSlice";
 import { fetchTeamImg } from "../features/teamImgSlice";
 import { fetchLeagueImg } from "../features/leagueImgSlice";
 import { fetchNationImg } from "../features/nationImgSlice";
-import { setPlayerInfo } from "../features/infoPlayerSlice"
+import { setPlayerInfo } from "../features/infoPlayerSlice";
 
 import { getPlayerInfoByID } from "../features/api";
 
@@ -58,7 +58,6 @@ export default function PlayerInfoPage() {
       if (infoPlayer == null) {
         dispatch(setPlayerInfo(res.data.player));
       }
-
     });
   }, []);
 

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -65,96 +65,98 @@ export default function AppBarHeader() {
 
   return (
     <>
-    <AppBar
-      position="static"
-      sx={{ bgcolor: "#1F2937", borderRadius: "30px", marginBottom: "1vw" }}
-    >
-      <Container maxWidth="xl">
-        <Toolbar>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                bgcolor: navbar == "home" && "#111827",
-                "&:hover":
-                  navbar == "home"
-                    ? { bgcolor: "#111827" }
-                    : { bgcolor: "#374151" },
-                marginRight: "1vw",
-              }}
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              HOME
-            </Button>
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                bgcolor: navbar == "players" && "#111827",
-                "&:hover":
-                  navbar == "players"
-                    ? { bgcolor: "#111827" }
-                    : { bgcolor: "#374151" },
-                marginRight: "1vw",
-              }}
-              onClick={() => {
-                navigate("/PlayersPage");
-              }}
-            >
-              Players
-            </Button>
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                bgcolor: navbar == "about" && "#111827",
-                "&:hover":
-                  navbar == "teams"
-                    ? { bgcolor: "#111827" }
-                    : { bgcolor: "#374151" },
-                marginRight: "1vw",
-              }}
-              onClick={() => {
-                navigate("/AboutPage");
-              }}
-            >
-              About
-            </Button>
-          </Box>
+      <AppBar
+        position="static"
+        sx={{ bgcolor: "#1F2937", borderRadius: "30px", marginBottom: "1vw" }}
+      >
+        <Container maxWidth="xl">
+          <Toolbar>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  bgcolor: navbar == "home" && "#111827",
+                  "&:hover":
+                    navbar == "home"
+                      ? { bgcolor: "#111827" }
+                      : { bgcolor: "#374151" },
+                  marginRight: "1vw",
+                }}
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                HOME
+              </Button>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  bgcolor: navbar == "players" && "#111827",
+                  "&:hover":
+                    navbar == "players"
+                      ? { bgcolor: "#111827" }
+                      : { bgcolor: "#374151" },
+                  marginRight: "1vw",
+                }}
+                onClick={() => {
+                  navigate("/PlayersPage");
+                }}
+              >
+                Players
+              </Button>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  bgcolor: navbar == "about" && "#111827",
+                  "&:hover":
+                    navbar == "teams"
+                      ? { bgcolor: "#111827" }
+                      : { bgcolor: "#374151" },
+                  marginRight: "1vw",
+                }}
+                onClick={() => {
+                  navigate("/AboutPage");
+                }}
+              >
+                About
+              </Button>
+            </Box>
 
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  if (text.length >= 3) {
-                    navigate("/search?q=" + text);
-                  }else{
-                    setShowError(true)  
-                    setTimeout(()=>{
-                      setShowError(false)  
-                    },3000)                  
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    if (text.length >= 3) {
+                      navigate("/search?q=" + text);
+                    } else {
+                      setShowError(true);
+                      setTimeout(() => {
+                        setShowError(false);
+                      }, 3000);
+                    }
                   }
-                }
-              }}
-            />
-          </Search>
-        </Toolbar>
-      </Container>
-    </AppBar>
-    { showError &&
-      <div style={{right: '1vw', position:'absolute' }}>
-        <Alert severity="error" variant="filled" sx={{width:"20vw"}} >Insert at least 3 leters to search!</Alert>
-      </div>
-    }
+                }}
+              />
+            </Search>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {showError && (
+        <div style={{ right: "1vw", position: "absolute" }}>
+          <Alert severity="error" variant="filled" sx={{ width: "20vw" }}>
+            Insert at least 3 leters to search!
+          </Alert>
+        </div>
+      )}
     </>
   );
 }

@@ -6,10 +6,21 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setPlayerInfo } from "../features/infoPlayerSlice";
 
-import { getPlayerInfoByID, getClubByID, getLeagueByID, getNationsByID } from "../features/api";
+import {
+  getPlayerInfoByID,
+  getClubByID,
+  getLeagueByID,
+  getNationsByID,
+  getPlayerImgByID,
+} from "../features/api";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "resourceId",
+    headerName: "Photo",
+    width: 70,
+    renderCell: (params) => <img src={params.value} width="100%" />,
+  },
   { field: "firstName", headerName: "First name", width: 200 },
   { field: "lastName", headerName: "Last name", width: 200 },
   { field: "age", headerName: "Age", width: 100 },
@@ -26,75 +37,32 @@ export default function SearchResults(props) {
   const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
-  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-
     let tmp = [];
-    props.playersIDs.forEach((val,idx) => {
+    props.playersIDs.forEach((val) => {
+      getPlayerInfoByID(val).then((result) => {
+        getClubByID(result.data.player.club).then((res) => {
+          result.data.player.club = res.data.club.name;
 
-        getPlayerInfoByID(val).then((res) => {
-            
-            tmp = [...tmp, res.data.player ]
+          getLeagueByID(result.data.player.league).then((res) => {
+            result.data.player.league = res.data.league.name;
 
-            getClubByID(res.data.player.club).then((res) => {
-                if (res.data.club.id == tmp[idx].club){
-                    tmp[idx].club = res.data.club.name;
-                }else{
-                    tmp.forEach((val,idx) => {
-                        if (res.data.club.id == val.club){
-                            tmp[idx].club = res.data.club.name;
-                        }
-                    })
-                }
-            });
-    
-            getLeagueByID(res.data.player.league).then((res) => {
-                if (res.data.league.id == tmp[idx].league){
-                    tmp[idx].league = res.data.league.name;
-                }else{
-                    tmp.forEach((val,idx) => {
-                        if (res.data.league.id == val.league){
-                            tmp[idx].league = res.data.league.name;
-                        }
-                    })
-                }
-            });
-    
-            getNationsByID(res.data.player.nation).then((res) => {
-                if (res.data.nation.id == tmp[idx].nation){
-                    tmp[idx].nation = res.data.nation.name;
-                }else{
-                    tmp.forEach((val,idx) => {
-                        if (res.data.nation.id == val.nation){
-                            tmp[idx].nation = res.data.nation.name;
-                        }
-                    })
-                }
-            });
+            getNationsByID(result.data.player.nation).then((res) => {
+              result.data.player.nation = res.data.nation.name;
 
-            setData(tmp);
+              getPlayerImgByID(result.data.player.id).then((res) => {
+                result.data.player.resourceId = res;
+
+                tmp = [...tmp, result.data.player];
+                setData(tmp);
+              });
+            });
+          });
         });
-
-        setUpdate(true)
+      });
     });
-
   }, [props.playersIDs]);
-
-  useEffect(() => {
-    if (data.length == props.playersIDs.length && update) {
-
-        setTimeout(() => {
-            setData([...data]);
-        }, 1000);
-
-        setTimeout(() => {
-            setData([...data]);
-        }, 2000);
-
-        setUpdate(false)
-    }
-  }, [data]);
 
   const handleRowClick = (params) => {
     dispatch(setPlayerInfo(params.row));
@@ -128,6 +96,3 @@ import PropTypes from "prop-types";
 SearchResults.propTypes = {
   playersIDs: PropTypes.object.isRequired,
 };
-
-
-

@@ -11,17 +11,18 @@ export default function PlayerBasicInfo() {
   const playerImg = useSelector((state) => state.playerImg.value);
 
   useEffect(() => {
-    if (infoPlayer){
+    if (infoPlayer) {
       dispatch(fetchPlayerImg(infoPlayer.id));
     }
-  }, [infoPlayer]);  
-
+  }, [infoPlayer]);
 
   return (
     <Stack spacing={2} direction={"row"}>
       <img src={playerImg && playerImg} height={256} />
       <Stack spacing={3}>
-        <h3>Name: {infoPlayer && infoPlayer.firstName + " " + infoPlayer.lastName} </h3>
+        <h3>
+          Name: {infoPlayer && infoPlayer.firstName + " " + infoPlayer.lastName}{" "}
+        </h3>
         <h3>Height: {infoPlayer && infoPlayer.height} cm</h3>
         <h3>Weight: {infoPlayer && infoPlayer.weight} kg</h3>
         <h3>Gender: {infoPlayer && infoPlayer.gender} </h3>

@@ -38,7 +38,7 @@ export default function SearchPage() {
           </Grid>
 
           <Grid item xs={12}>
-              <SearchResults playersIDs={playersIDs} />
+            <SearchResults playersIDs={playersIDs} />
           </Grid>
         </Grid>
       </Box>
