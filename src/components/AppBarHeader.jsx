@@ -7,6 +7,7 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import Alert from "@mui/material/Alert";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -71,7 +72,14 @@ export default function AppBarHeader() {
       >
         <Container maxWidth="xl">
           <Toolbar>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <SportsSoccerIcon fontSize="large" />
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                marginLeft: "1vw",
+              }}
+            >
               <Button
                 sx={{
                   my: 2,
