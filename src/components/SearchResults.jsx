@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setPlayerInfo } from "../features/infoPlayerSlice";
+import PropTypes from "prop-types";
 
 import {
   getPlayerInfoByID,
@@ -91,7 +92,6 @@ export default function SearchResults(props) {
   );
 }
 
-import PropTypes from "prop-types";
 
 SearchResults.propTypes = {
   playersIDs: PropTypes.object.isRequired,
