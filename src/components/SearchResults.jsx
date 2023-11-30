@@ -92,7 +92,6 @@ export default function SearchResults(props) {
   );
 }
 
-
 SearchResults.propTypes = {
   playersIDs: PropTypes.object.isRequired,
 };
